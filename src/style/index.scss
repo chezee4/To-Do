@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    border:0;
+    box-sizing:border-box;
+
+}
+
+html,body{
+ min-height: 100vh;
+}
+
+body{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background-color: #313134;
+    font-family: cursive;
+}
+
+#root{
+width: 100%;
+}
+.container{
+    max-width: 500px;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+     align-items: center;
+     border-radius: 20px;
+     margin: 0 auto;
+     background-color: #141414;
+     box-shadow: 0px 5px 15px -2px #4c4b4b;
+}
+
+

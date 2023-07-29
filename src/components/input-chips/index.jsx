@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./input-chips.scss";
+import Chips from "../chips";
+import { InputChipsContainer, InputChipsText } from "./styles.jsx";
 
-const Chips = ({ onPushData, chips, setChips }) => {
+const InputChips = ({ onPushData, chips, setChips }) => {
   const [inputValue, setInputValue] = useState("");
   const maxlength = 10;
+  const inputRef = useRef(null);
+
+  const handleClick = () => inputRef.current.focus();
+
   const handleKeyDown = (event) => {
     const value = event.target.value;
     if (value.length <= maxlength) setInputValue(value);
   };
+
   const push = (e) => {
     if (e.key === "Enter") {
       updateChips(inputValue);
@@ -18,7 +24,7 @@ const Chips = ({ onPushData, chips, setChips }) => {
 
   const updateChips = (value) => {
     const chipValue = value.trim().toLowerCase();
-    if (chipValue) {
+    if (chipValue && !chips.find(({ value }) => chipValue === value)) {
       const newChip = { id: uuidv4(), value: chipValue };
       onPushData(newChip);
     }
@@ -29,28 +35,19 @@ const Chips = ({ onPushData, chips, setChips }) => {
     setChips((chips) => chips.filter((chip) => chip.id !== id));
 
   return (
-    <div className="input-chips__container">
-      {chips.map(({ id, value }) => (
-        <span className="chip" key={id}>
-          <span className="chip-value">{value}</span>
-          <button
-            type="button"
-            className="delete-button"
-            onClick={() => deleteChip(id)}
-          >
-            x
-          </button>
-        </span>
-      ))}
-      <input
-        type="text"
-        className="input-chips"
-        value={inputValue}
-        onChange={handleKeyDown}
-        onKeyDown={push}
-      />
-    </div>
+    <InputChipsContainer onClick={handleClick}>
+      <Chips chips={chips} deleteChip={deleteChip} />
+      {chips.length <= 10 ? (
+        <InputChipsText
+          ref={inputRef}
+          placeholder="Type chips"
+          value={inputValue}
+          onChange={handleKeyDown}
+          onKeyDown={push}
+        />
+      ) : null}
+    </InputChipsContainer>
   );
 };
 
-export default Chips;
+export default InputChips;
