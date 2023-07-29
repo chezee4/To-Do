@@ -7,7 +7,7 @@ const List = ({ data, setData }) => {
   const [text, setText] = useState("");
 
   const Edit = (itemId, itemText) => {
-    id(itemId);
+    setId(itemId);
     setText(itemText);
   };
   const Enter = (e, itemId) => {

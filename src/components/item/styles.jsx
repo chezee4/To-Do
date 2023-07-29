@@ -22,7 +22,7 @@ export const Input = styled.input`
 	font-size: 18px;
 	color: rgb(218, 219, 217);
 	background-color: inherit;
-    max-width: 350px;
+    width: 300px;
 	border: none;
 	padding: 15px 10px 15px 10px;
 	text-decoration: none;
