@@ -21,6 +21,7 @@ import editicon from "./edit.png";
 
 const ItemList = ({ item }) => {
   const [text, setText] = useState("");
+  const [isChecked, setIsChecked] = useState(item.isChecked);
   const [id, setId] = useState(null);
   const { data, setData } = useContext(DataContext);
 
@@ -50,8 +51,9 @@ const ItemList = ({ item }) => {
 
   const idItem = item.id;
   const changeMarcker = () => {
+    setIsChecked((isChecked) => !isChecked);
     const newData = data.map((item) =>
-      item.id === idItem ? { ...item, isChecked: !item.isChecked } : item
+      item.id === idItem ? { ...item, isChecked } : item
     );
     setData(newData);
   };
@@ -62,10 +64,10 @@ const ItemList = ({ item }) => {
         <Label>
           <CheckBoxInput
             type="checkbox"
-            checked={item.isChecked}
+            checked={isChecked}
             onChange={changeMarcker}
           />
-          <CheckBoxSpan isChecked={item.isChecked} />
+          <CheckBoxSpan isChecked={isChecked} />
         </Label>
       </CheckboxWrapper>
       <Content>
@@ -78,7 +80,7 @@ const ItemList = ({ item }) => {
             onKeyDown={(e) => sendingСhanges(e, item.id)}
           />
         ) : (
-          <TextContainer isChecked={item.isChecked}>{item.text}</TextContainer>
+          <TextContainer isChecked={isChecked}>{item.text}</TextContainer>
         )}
         <Chips chips={item.chips || []} comparison={false} />
       </Content>

@@ -10,15 +10,12 @@ import { DataContext } from "../../context";
 import "./styles.scss";
 
 const validationSchema = Yup.object().shape({
-  input: Yup.string()
-    .required("This is input is Required"),
+  input: Yup.string().required("This is input is Required"),
 });
 
 const FormComponent = () => {
-  
-  const [chips, setChips] = useState([{ id: uuidv4(), value: "test"}]);
-  const {setData } = useContext(DataContext);
-
+  const [chips, setChips] = useState([{ id: uuidv4(), value: "test" }]);
+  const { setData } = useContext(DataContext);
 
   const onPushData = (newChips) => {
     setChips((chips) => [...chips, newChips]);
@@ -29,19 +26,24 @@ const FormComponent = () => {
       initialValues={{ input: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        const newData = { id: uuidv4(), isChecked:false, text: values.input, chips: [...chips] };
+        const newData = {
+          id: uuidv4(),
+          isChecked: false,
+          text: values.input,
+          chips: [...chips],
+        };
         setData((data) => [...data, newData]);
         setChips([]);
         resetForm();
       }}
     >
       {(props) => (
-        <Form className="FormToDo" >
-          <div style={{position: "relative"}}>
-              <Input name="input" type="text" autoComplete="false" />
-              <button className= "submitButton" type="Submit">
-                {">"}
-              </button>
+        <Form className="FormToDo">
+          <div style={{ position: "relative" }}>
+            <Input name="input" type="text" />
+            <button className="submitButton" type="Submit">
+              {">"}
+            </button>
           </div>
           <InputChips
             autoComplete="off"
@@ -49,7 +51,6 @@ const FormComponent = () => {
             chips={chips}
             setChips={setChips}
           />
-          
         </Form>
       )}
     </Formik>
