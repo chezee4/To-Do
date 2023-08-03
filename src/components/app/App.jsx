@@ -12,7 +12,7 @@ function App() {
   const [data, setData] = useState([[]]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("data"));
+    const storedData = JSON.parse(localStorage.getItem("data")) || [];
     storedData.length
       ? setData(storedData)
       : setData([
@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
-  console.log(data);
+
   return (
     <DataContext.Provider value={{ data, setData }}>
       <div className="App">

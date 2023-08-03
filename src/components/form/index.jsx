@@ -29,7 +29,7 @@ const FormComponent = () => {
       initialValues={{ input: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        const newData = { id: uuidv4(), isсhecked:false, text: values.input, chips: [...chips] };
+        const newData = { id: uuidv4(), isChecked:false, text: values.input, chips: [...chips] };
         setData((data) => [...data, newData]);
         setChips([]);
         resetForm();

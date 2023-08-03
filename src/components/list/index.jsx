@@ -18,7 +18,7 @@ const List = () => {
       <TransitionGroup>
           {data.map((item) => (
              <CSSTransition
-              key={item.id}
+             key={item.id}
               timeout={500}
               classNames="item"
            >
