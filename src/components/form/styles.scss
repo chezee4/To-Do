@@ -6,3 +6,21 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.submitButton{
+ 
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    border-radius: 50%;
+    border: none;
+    right: 0;
+    transform: translate(4px, 5px);
+    border-radius: 50%;
+    cursor: pointer;
+    color: wheat;
+    overflow: hidden;
+    font-size: 28px;
+    transition-duration: 0.3s;
+    background-color: transparent;
+}

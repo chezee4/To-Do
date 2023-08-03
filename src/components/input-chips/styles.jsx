@@ -4,6 +4,7 @@ export const InputChipsContainer = styled.div`
   min-height: 36px;
   margin-top: 20px;
   line-height: 1;
+  padding-left:10px;
   font-size: 1em;
   box-shadow: 0 1px 3px rgba( 0, 0, 0.1);
   border-radius:15px;

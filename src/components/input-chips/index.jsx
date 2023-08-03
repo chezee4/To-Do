@@ -25,18 +25,15 @@ const InputChips = ({ onPushData, chips, setChips }) => {
   const updateChips = (value) => {
     const chipValue = value.trim().toLowerCase();
     if (chipValue && !chips.find(({ value }) => chipValue === value)) {
-      const newChip = { id: uuidv4(), value: chipValue };
+      const newChip = { id: uuidv4(), value: chipValue};
       onPushData(newChip);
     }
     setInputValue("");
   };
 
-  const deleteChip = (id) =>
-    setChips((chips) => chips.filter((chip) => chip.id !== id));
-
   return (
     <InputChipsContainer onClick={handleClick}>
-      <Chips chips={chips} deleteChip={deleteChip} />
+      <Chips chips={chips} setChips={setChips} />
       {chips.length <= 10 ? (
         <InputChipsText
           ref={inputRef}

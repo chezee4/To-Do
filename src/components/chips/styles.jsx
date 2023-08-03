@@ -1,19 +1,19 @@
-import styled from "styled-components";
+import styled   from "styled-components";
 
 export const Chip = styled.span`
 
     display: inline-block;
+    font-size:18px;
     margin: 5px;
     margin-right: 8px;
     position: relative;
     cursor: pointer;
-  
+    
  `
  
 export const ChipValue = styled.span`
      display: inline-block;
       padding: 5px;
-      font-family: cursive;
       padding-inline: 15px;
       padding-right: 20px;
       background: #414040;

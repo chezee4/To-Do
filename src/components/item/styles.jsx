@@ -33,6 +33,7 @@ export const Input = styled.input`
 export const Tools = styled.div`
     position: absolute;
     right: 0;
+    
     top: 0;
 	max-width: 80px;
 	display: flex;
@@ -41,6 +42,8 @@ export const Tools = styled.div`
 `;
 
  export const Delete = styled.button`
+    position: relative;
+    z-index:999;
     padding: 7px 10px;
     border: none;
     background-color: rgba(100,77,237,0.08);

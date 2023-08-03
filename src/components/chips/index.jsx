@@ -1,14 +1,17 @@
 import React from "react";
 import { Chip, ChipValue, DeleteButton } from "./styles.jsx";
 
+const Chips = ({ chips, setChips, comparison = true}) => {
 
-const Chips = ({ chips, deleteChip = null }) => {
-
+  const deleteChip = (id) =>
+    setChips((chips) => chips.filter((chip) => chip.id !== id));
 
   return chips.map(({ id, value }) => (
-    <Chip key={id}>
+    <Chip
+      key={id}
+    >
       <ChipValue>{value}</ChipValue>
-      {deleteChip ? (
+      {comparison ? (
         <DeleteButton
           type="button"
           className="delete-button"
@@ -19,7 +22,6 @@ const Chips = ({ chips, deleteChip = null }) => {
       ) : null}
     </Chip>
   ));
-  
 };
 
 export default Chips;
