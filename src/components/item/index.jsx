@@ -24,6 +24,7 @@ const ItemList = ({ item }) => {
   const [isChecked, setIsChecked] = useState(item.isChecked);
   const [id, setId] = useState(null);
   const { data, setData } = useContext(DataContext);
+  const idItem = item.id;
 
   const editToDo = (itemId, itemText) => {
     setId(itemId);
@@ -48,8 +49,17 @@ const ItemList = ({ item }) => {
     const updatedItems = data.filter((item) => item.id !== itemId);
     setData(updatedItems);
   };
+  const deleteChip = (deleteChipId) => {
+    const updatedData = data.map((item) => {
+      if (item.id === idItem) {
+        const newChips = item.chips.filter((chip) => chip.id !== deleteChipId);
+        return { ...item, chips: newChips };
+      }
+      return item;
+    });
+    setData(updatedData);
+  };
 
-  const idItem = item.id;
   const changeMarcker = () => {
     setIsChecked((isChecked) => !isChecked);
     const newData = data.map((item) =>
@@ -82,7 +92,11 @@ const ItemList = ({ item }) => {
         ) : (
           <TextContainer isChecked={isChecked}>{item.text}</TextContainer>
         )}
-        <Chips chips={item.chips || []} comparison={false} />
+        <Chips
+          chips={item.chips || []}
+          comparison={id === item.id}
+          onDeleteChip={deleteChip}
+        />
       </Content>
       <Tools>
         <Change onClick={() => editToDo(item.id, item.text)}>

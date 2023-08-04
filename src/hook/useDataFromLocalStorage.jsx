@@ -5,15 +5,14 @@ export const useDataFromLocalStorage = () => {
   const [data, setData] = useState([]);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-  const fetchLocalStorage = async () =>
-    (await JSON.parse(localStorage.getItem("data"))) || [];
+  const fetchLocalStorage = () =>
+    (JSON.parse(localStorage.getItem("data"))) || [];
 
   useEffect(() => {
-    fetchLocalStorage().then((storedData) => {
-      storedData.length ? setData(storedData) : setData(dataPlaceholde);
+      const dataLocalStorage  = fetchLocalStorage();
+      dataLocalStorage.length ? setData(dataLocalStorage) : setData(dataPlaceholde);
       setIsDataLoaded(true);
-    });
-  }, []);
+    }, []);
 
   useEffect(() => {
     isDataLoaded && localStorage.setItem("data", JSON.stringify(data));

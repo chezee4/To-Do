@@ -5,8 +5,8 @@ import { InputChipsContainer, InputChipsText } from "./styles.jsx";
 
 const InputChips = ({ onPushData, chips, setChips }) => {
   const [inputValue, setInputValue] = useState("");
-  const maxlength = 10;
   const inputRef = useRef(null);
+  const maxlength = 10;
 
   const handleClick = () => inputRef.current.focus();
 

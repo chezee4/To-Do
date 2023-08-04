@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
 
 const FormComponent = () => {
   const [chips, setChips] = useState([{ id: uuidv4(), value: "test" }]);
-  const { setData } = useContext(DataContext);
+  const {setData} = useContext(DataContext);
 
   const onPushData = (newChips) => {
     setChips((chips) => [...chips, newChips]);

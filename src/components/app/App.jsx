@@ -3,7 +3,7 @@ import Header from "../header";
 import List from "../list";
 
 import { DataContext } from "../../context";
-import { useDataFromLocalStorage } from "../../utils/dataUtils";
+import { useDataFromLocalStorage } from "../../hook/useDataFromLocalStorage";
 
 import "../../style/index.scss";
 
